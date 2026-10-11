@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Character Counter</title>
+</head>
+
+<body>
+
+
+    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #392821;
+        text-align: center;
+        padding-top: 100px;
+        min-height: 100vh;
+        margin: 0;
+        animation: fadeIn 1s ease;
+    }
+
+    h2 {
+        color: #F7F0E6;
+        font-size: 30px;
+        letter-spacing: 1px;
+        animation: slideDown 0.8s ease;
+    }
+
+    textarea {
+        width: 300px;
+        height: 150px;
+        padding: 15px;
+        border: 2px solid #A47764;
+        border-radius: 15px;
+        font-size: 16px;
+        background: #F7F0E6;
+        color: #392821;
+        resize: none;
+        outline: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        transition: 0.4s;
+    }
+
+    textarea:focus {
+        border-color: #D8B9A5;
+        box-shadow: 0 0 18px rgba(212, 175, 150, 0.5);
+        transform: scale(1.02);
+    }
+
+    p {
+        color: #E8D5C4;
+    }
+
+    #counter {
+        display: inline-block;
+        font-weight: bold;
+        color: #F7F0E6;
+        background: #A47764;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+    }
+
+    #counter:hover {
+        background: #C19A82;
+        transform: translateY(-3px);
+    }
+
+    #warning {
+        color: #FFD6C9;
+        font-weight: bold;
+        animation: blink 0.8s infinite alternate;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes blink {
+        from { opacity: 0.6; }
+        to { opacity: 1; }
+    }
+
+    @media (max-width: 400px) {
+        textarea {
+            width: 85%;
+        }
+    }
+</style>
+
+
+
+
+    <h2>Character Counter</h2>
+
+    <textarea id="message" maxlength="200" placeholder="Type your message"></textarea>
+
+    <p>200 characters max</p>
+
+    <p id="counter">0/200 characters</p>
+
+    <p id="warning"></p>
+
+
+
+    <script>
+        let message = document.getElementById("message");
+        let counter = document.getElementById("counter");
+        let warning = document.getElementById("warning");
+
+        message.addEventListener("input", function () {
+            let typed = message.value.length;
+            let remaining = 200 - typed;
+
+            counter.innerHTML = typed + "/200 characters";
+            warning.innerHTML = remaining == 0
+                ? "Character limit reached!"
+                : "";
+        });
+    </script>
+
+
+</body>
+
+</html>
